@@ -1,7 +1,7 @@
 # About this repo
 This is a fork of excellent work here : [arialdomartini/oh-my-git](https://github.com/arialdomartini/oh-my-git). The motivations for forking into my own :
 
-- [ ] Make it conveniently themeable.
+- [x] Make it conveniently themeable.
 - [ ] Dropping Bash 3 support.
 - [ ] Possibly make more breaking changes.
 
