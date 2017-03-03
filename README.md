@@ -1,3 +1,13 @@
+# About this repo
+This is a fork of excellent work here : [arialdomartini/oh-my-git](https://github.com/arialdomartini/oh-my-git). The motivations for forking into my own :
+
+- [ ] Make it conveniently themeable.
+- [ ] Dropping Bash 3 support.
+- [ ] Possibly make more breaking changes.
+
+# Warning
+* This is a WIP progress and may be consistently in broken state. 
+* Since I will be dropping Bash 3 support it would break compatibility with macOS (unless you are using Bash 4 or Zsh) 
 
 ![alt tag](https://raw.githubusercontent.com/arialdomartini/oh-my-git-gh-pages/master/images/samples/01-ordinary-prompt.jpg)
 ![alt tag](https://raw.githubusercontent.com/arialdomartini/oh-my-git-gh-pages/master/images/samples/02-bang.jpg)
