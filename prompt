@@ -104,3 +104,17 @@ function_exists() {
 function eval_prompt_callback_if_present {
         function_exists omg_prompt_callback && echo "$(omg_prompt_callback)"
 }
+
+function bash_prompt() {
+    PS1="$(build_prompt)"
+}
+
+THEME=${1:-default}
+
+if [ -n "${BASH_VERSION}" ]; then
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+    source ${DIR}/themes/${THEME}
+
+    PROMPT_COMMAND="bash_prompt; $PROMPT_COMMAND_ORG"
+ fi
