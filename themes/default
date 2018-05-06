@@ -172,5 +172,3 @@ function custom_build_prompt {
 
 
 PS2="${yellow}→${reset} "
-
-
