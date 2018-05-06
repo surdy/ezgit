@@ -102,7 +102,7 @@ function_exists() {
 }
 
 function eval_prompt_callback_if_present {
-        function_exists omg_prompt_callback && echo "$(omg_prompt_callback)"
+        function_exists ezg_prompt_callback && echo "$(ezg_prompt_callback)"
 }
 
 function bash_prompt() {
