@@ -31,7 +31,7 @@ PROMPT_COMMAND_ORG=$PROMPT_COMMAND;
 PROMPT='$(build_prompt)'
 RPROMPT='%{$reset_color%}%T %{$fg_bold[white]%} %n@%m%{$reset_color%}'
 
-function enrich_append {
+function print_status {
     local flag=$1
     local symbol=$2
     local color=${3:-$ezg_default_color_on}
@@ -107,33 +107,33 @@ function custom_build_prompt {
     if [[ $is_a_git_repo == true ]]; then
         # on filesystem
         prompt="${black_on_white} "
-        prompt+=$(enrich_append $is_a_git_repo $ezg_is_a_git_repo_symbol "${black_on_white}")
-        prompt+=$(enrich_append $has_stashes $ezg_has_stashes_symbol "${yellow_on_white}")
+        prompt+=$(print_status $is_a_git_repo $ezg_is_a_git_repo_symbol "${black_on_white}")
+        prompt+=$(print_status $has_stashes $ezg_has_stashes_symbol "${yellow_on_white}")
 
-        prompt+=$(enrich_append $has_untracked_files $ezg_has_untracked_files_symbol "${red_on_white}")
-        prompt+=$(enrich_append $has_modifications $ezg_has_modifications_symbol "${red_on_white}")
-        prompt+=$(enrich_append $has_deletions $ezg_has_deletions_symbol "${red_on_white}")
+        prompt+=$(print_status $has_untracked_files $ezg_has_untracked_files_symbol "${red_on_white}")
+        prompt+=$(print_status $has_modifications $ezg_has_modifications_symbol "${red_on_white}")
+        prompt+=$(print_status $has_deletions $ezg_has_deletions_symbol "${red_on_white}")
         
 
         # ready
-        prompt+=$(enrich_append $has_adds $ezg_has_adds_symbol "${black_on_white}")
-        prompt+=$(enrich_append $has_modifications_cached $ezg_has_cached_modifications_symbol "${black_on_white}")
-        prompt+=$(enrich_append $has_deletions_cached $ezg_has_cached_deletions_symbol "${black_on_white}")
+        prompt+=$(print_status $has_adds $ezg_has_adds_symbol "${black_on_white}")
+        prompt+=$(print_status $has_modifications_cached $ezg_has_cached_modifications_symbol "${black_on_white}")
+        prompt+=$(print_status $has_deletions_cached $ezg_has_cached_deletions_symbol "${black_on_white}")
 
         # next operation
 
-        prompt+=$(enrich_append $ready_to_commit $ezg_ready_to_commit_symbol "${red_on_white}")
-        prompt+=$(enrich_append $action "${ezg_has_action_in_progress_symbol} $action" "${red_on_white}")
+        prompt+=$(print_status $ready_to_commit $ezg_ready_to_commit_symbol "${red_on_white}")
+        prompt+=$(print_status $action "${ezg_has_action_in_progress_symbol} $action" "${red_on_white}")
 
         # where
 
         prompt="${prompt} ${white_on_red} ${black_on_red}"
         if [[ $detached == true ]]; then
-            prompt+=$(enrich_append $detached $ezg_detached_symbol "${white_on_red}")
-            prompt+=$(enrich_append $detached "(${current_commit_hash:0:7})" "${black_on_red}")
+            prompt+=$(print_status $detached $ezg_detached_symbol "${white_on_red}")
+            prompt+=$(print_status $detached "(${current_commit_hash:0:7})" "${black_on_red}")
         else
             if [[ $has_upstream == false ]]; then
-                prompt+=$(enrich_append true "-- ${ezg_not_tracked_branch_symbol}  --  (${current_branch})" "${black_on_red}")
+                prompt+=$(print_status true "-- ${ezg_not_tracked_branch_symbol}  --  (${current_branch})" "${black_on_red}")
             else
                 if [[ $will_rebase == true ]]; then
                     local type_of_upstream=$ezg_rebase_tracking_branch_symbol
@@ -142,23 +142,23 @@ function custom_build_prompt {
                 fi
 
                 if [[ $has_diverged == true ]]; then
-                    prompt+=$(enrich_append true "-${commits_behind} ${ezg_has_diverged_symbol} +${commits_ahead}" "${white_on_red}")
+                    prompt+=$(print_status true "-${commits_behind} ${ezg_has_diverged_symbol} +${commits_ahead}" "${white_on_red}")
                 else
                     if [[ $commits_behind -gt 0 ]]; then
-                        prompt+=$(enrich_append true "-${commits_behind} ${white_on_red}${ezg_can_fast_forward_symbol}${black_on_red} --" "${black_on_red}")
+                        prompt+=$(print_status true "-${commits_behind} ${white_on_red}${ezg_can_fast_forward_symbol}${black_on_red} --" "${black_on_red}")
                     fi
                     if [[ $commits_ahead -gt 0 ]]; then
-                        prompt+=$(enrich_append true "-- ${white_on_red}${ezg_should_push_symbol}${black_on_red}  +${commits_ahead}" "${black_on_red}")
+                        prompt+=$(print_status true "-- ${white_on_red}${ezg_should_push_symbol}${black_on_red}  +${commits_ahead}" "${black_on_red}")
                     fi
                     if [[ $commits_ahead == 0 && $commits_behind == 0 ]]; then
-                        prompt+=$(enrich_append true " --   -- " "${black_on_red}")
+                        prompt+=$(print_status true " --   -- " "${black_on_red}")
                     fi
 
                 fi
-                prompt+=$(enrich_append true "(${current_branch} ${type_of_upstream} ${upstream//\/$current_branch/})" "${black_on_red}")
+                prompt+=$(print_status true "(${current_branch} ${type_of_upstream} ${upstream//\/$current_branch/})" "${black_on_red}")
             fi
         fi
-        prompt+=$(enrich_append ${is_on_a_tag} "${ezg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
+        prompt+=$(print_status ${is_on_a_tag} "${ezg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
         prompt+="${ezg_last_symbol_color}${reset}\n"
         prompt+="$(eval_prompt_callback_if_present)"
         prompt+="${ezg_second_line}"
