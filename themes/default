@@ -24,14 +24,11 @@ PROMPT_COMMAND_ORG=$PROMPT_COMMAND;
 : ${ezg_has_stashes_symbol:=''}
 : ${ezg_has_action_in_progress_symbol:=''}     #                  
 
-: ${ezg_default_color_on:='\[\e[1;37m\]'}
-: ${ezg_default_color_off:='\[\e[0m\]'}
-: ${ezg_last_symbol_color:='\e[0;31m\e[49m'}
-
 function print_status {
+    local default_color_on='\[\e[1;37m\]'
     local flag=$1
     local symbol=$2
-    local color=${3:-$ezg_default_color_on}
+    local color=${3:-$default_color_on}
     if [[ $flag == false ]]; then symbol=' '; fi
 
     echo -n "${color}${symbol}  "
@@ -86,6 +83,7 @@ function custom_build_prompt {
     local background_purple='\e[45m'
     local background_cyan='\e[46m'
     local background_white='\e[47m'
+    local background_default='\e[49m'
 
     local reset='\e[0m'     # Text Reset]'
 
@@ -96,6 +94,7 @@ function custom_build_prompt {
     local black_on_red="${black}${background_red}"
     local white_on_red="${white}${background_red}"
     local yellow_on_red="${yellow}${background_red}"
+    local red_on_default="${red}${background_default}"
 
 
     # Flags
@@ -156,7 +155,7 @@ function custom_build_prompt {
             fi
         fi
         prompt+=$(print_status ${is_on_a_tag} "${ezg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
-        prompt+="${ezg_last_symbol_color}${reset}\n"
+        prompt+="${red_on_default}${reset}\n"
         prompt+="$(eval_prompt_callback_if_present)"
         prompt+="${ezg_second_line}"
     else
