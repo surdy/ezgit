@@ -109,6 +109,38 @@ function bash_prompt() {
     PS1="$(build_prompt)"
 }
 
+# foreground
+black='\e[0;30m'
+red='\e[0;31m'
+green='\e[0;32m'
+yellow='\e[0;33m'
+blue='\e[0;34m'
+purple='\e[0;35m'
+cyan='\e[0;36m'
+white='\e[0;37m'
+
+#background
+background_black='\e[40m'
+background_red='\e[41m'
+background_green='\e[42m'
+background_yellow='\e[43m'
+background_blue='\e[44m'
+background_purple='\e[45m'
+background_cyan='\e[46m'
+background_white='\e[47m'
+background_default='\e[49m'
+
+reset='\e[0m'     # Text Reset]'
+
+black_on_white="${black}${background_white}"
+yellow_on_white="${yellow}${background_white}"
+red_on_white="${red}${background_white}"
+red_on_black="${red}${background_black}"
+black_on_red="${black}${background_red}"
+white_on_red="${white}${background_red}"
+yellow_on_red="${yellow}${background_red}"
+red_on_default="${red}${background_default}"
+
 THEME=${1:-default}
 
 if [ -n "${BASH_VERSION}" ]; then
