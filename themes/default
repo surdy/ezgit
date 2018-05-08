@@ -24,8 +24,8 @@ PROMPT_COMMAND_ORG=$PROMPT_COMMAND;
 : ${ezg_has_stashes_symbol:=''}
 : ${ezg_has_action_in_progress_symbol:=''}     #                  
 
-: ${ezg_default_color_on:='\[\033[1;37m\]'}
-: ${ezg_default_color_off:='\[\033[0m\]'}
+: ${ezg_default_color_on:='\[\e[1;37m\]'}
+: ${ezg_default_color_off:='\[\e[0m\]'}
 : ${ezg_last_symbol_color:='\e[0;31m\e[40m'}
 
 PROMPT='$(build_prompt)'
