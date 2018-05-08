@@ -101,10 +101,6 @@ function_exists() {
     return $?
 }
 
-function eval_prompt_callback_if_present {
-        function_exists ezg_prompt_callback && echo "$(ezg_prompt_callback)"
-}
-
 function bash_prompt() {
     PS1="$(build_prompt)"
 }

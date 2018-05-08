@@ -123,10 +123,8 @@ function custom_build_prompt {
         fi
         prompt+=$(print_status ${is_on_a_tag} "${ezg_is_on_a_tag_symbol} ${tag_at_current_commit}" "${black_on_red}")
         prompt+="${red_on_default}${reset}\n"
-        prompt+="$(eval_prompt_callback_if_present)"
         prompt+="${ezg_second_line}"
     else
-        prompt+="$(eval_prompt_callback_if_present)"
         prompt+="${ezg_ungit_prompt}"
     fi
     
