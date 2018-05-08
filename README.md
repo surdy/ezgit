@@ -2,7 +2,7 @@
 This is a fork of excellent work here : [arialdomartini/oh-my-git](https://github.com/arialdomartini/oh-my-git). The motivations for forking into my own :
 
 - [x] Make it conveniently themeable.
-- [ ] Dropping Bash 3 support.
+- [ ] Refactor without regard to bash 3 or zsh
 - [ ] Possibly make more breaking changes.
 
 # Warning
