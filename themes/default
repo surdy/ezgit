@@ -26,7 +26,7 @@ PROMPT_COMMAND_ORG=$PROMPT_COMMAND;
 
 : ${ezg_default_color_on:='\[\e[1;37m\]'}
 : ${ezg_default_color_off:='\[\e[0m\]'}
-: ${ezg_last_symbol_color:='\e[0;31m\e[40m'}
+: ${ezg_last_symbol_color:='\e[0;31m\e[49m'}
 
 function print_status {
     local flag=$1
